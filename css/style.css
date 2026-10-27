@@ -379,3 +379,8 @@ input:focus,textarea:focus{outline:0;background:#fff;box-shadow:-4px 4px 0 var(-
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
 }
+
+.credit{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.credit .credit-logo{background:#fff;border-radius:14px;padding:8px 14px;min-height:44px;display:inline-flex;align-items:center;letter-spacing:0}
+.credit .credit-logo:hover{text-decoration:none;transform:translateY(-2px)}
+.credit-logo img{height:34px;width:auto;display:block}
