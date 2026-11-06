@@ -132,6 +132,22 @@
     v.addEventListener('ended', function () { frame.classList.remove('is-playing'); v.controls = false; });
   });
 
+  // family boat: tap to unmute (autoplay stays muted by browser policy)
+  $$('.js-sound-video').forEach(function (v) {
+    var wrap = v.closest('.craft-media, .family-media') || v.parentElement;
+    var btn = $('.sound-btn', wrap);
+    if (!btn) return;
+    var label = $('.sound-label', btn);
+    function setOn(on) {
+      v.muted = !on;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (label) label.textContent = on ? 'כבה סאונד' : 'הפעל סאונד';
+      if (on) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    }
+    btn.addEventListener('click', function () { setOn(v.muted); });
+  });
+
   /* ---------- form ---------- */
   var form = $('#apply-form');
   if (!form) return;
@@ -192,6 +208,7 @@
       phone: form.elements.phone.value.trim(),
       age: form.elements.age.value.trim(),
       us_passport: form.elements.passport.value,
+      us_work_eligible: form.elements.passport.value,
       start_date: startInput.value,
       message: form.elements.message.value.trim(),
       source: 'aloha-landing',
@@ -202,7 +219,7 @@
     return ['היי, אני רוצה להגיש מועמדות לעבודה בהוואי',
       'שם: ' + d.name, 'טלפון: ' + d.phone,
       d.age ? 'גיל: ' + d.age : null,
-      'דרכון אמריקאי: ' + (d.us_passport === 'yes' ? 'כן' : 'לא'),
+      'אפשרות עבודה בארה״ב: ' + (d.us_passport === 'yes' ? 'כן' : 'לא'),
       'אפשר להתחיל מ: ' + d.start_date,
       d.message ? 'קצת עליי: ' + d.message : null].filter(Boolean).join('\n');
   }
