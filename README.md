@@ -15,6 +15,10 @@ Local preview: `cd site && python3 -m http.server 8765` then open http://localho
 - `index.html`: set og:url / absolute og:image URL after the domain is known.
 - Consent: `assets/video/kiosk-walk.mp4` shows a tourist couple's faces (~0:58-1:10) and mentions an American passport;
   `team-boat.mp4` shows real people. Confirm consent or trim.
+- Media (do not trust filenames that arrived later): `team-boat.mp4` is the original seaside/boat clip (848×478, video only, no audio stream).
+  `craft-resin.mp4` is the wood/epoxy workshop and is the only file with that picture; its AAC stays on that clip.
+  A file once called `boat-company.mp4` was the craft video, not the boat. Do not copy it over `team-boat.mp4`.
+  There is no original boat soundtrack in the repo. Do not invent one.
 
 ## Adding photos / videos
 Add an item to the `GALLERY` array in `js/config.js` (examples inside). Put files in `assets/img/` or `assets/video/`.

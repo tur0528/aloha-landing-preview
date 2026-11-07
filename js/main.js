@@ -32,7 +32,6 @@
     }
   });
 
-  /* ---------- hide floating WhatsApp while the apply section / footer is on screen ---------- */
   var waFloat = $('.wa-float');
   if (waFloat && 'IntersectionObserver' in window) {
     var visible = new Set();
@@ -40,25 +39,22 @@
       entries.forEach(function (en) { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); });
       waFloat.classList.toggle('is-hidden', visible.size > 0);
     }, { threshold: 0.05 });
-    ['#apply', '.site-footer'].forEach(function (s) { var el = $(s); if (el) fo.observe(el); });
+    ['.hero', '#apply', '.site-footer'].forEach(function (s) { var el = $(s); if (el) fo.observe(el); });
   }
 
-  /* ---------- ticker: duplicate the group for a seamless loop ---------- */
-  $$('.ticker-track').forEach(function (t) {
-    var g = $('.ticker-group', t); if (!g) return;
-    for (var k = 0; k < 2; k++) { var c = g.cloneNode(true); c.setAttribute('aria-hidden', 'true'); t.appendChild(c); }
-  });
-
-  /* ---------- header state ---------- */
-  var header = $('.site-header');
-  function onScroll() { header.classList.toggle('is-solid', window.scrollY > 40); }
-  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+  /* ---------- ticker ---------- */
+  if (!reduceMotion) {
+    $$('.ticker-track').forEach(function (t) {
+      var g = $('.ticker-group', t); if (!g) return;
+      for (var k = 0; k < 2; k++) { var c = g.cloneNode(true); c.setAttribute('aria-hidden', 'true'); t.appendChild(c); }
+    });
+  }
 
   /* ---------- gallery ---------- */
   var grid = $('#gallery-grid');
-  (window.GALLERY || []).forEach(function (item, i) {
+  (window.GALLERY || []).forEach(function (item) {
     var fig = document.createElement('figure');
-    fig.className = 'g-item reveal' + (item.wide ? ' g-wide' : '');
+    fig.className = 'g-item' + (item.wide ? ' g-wide' : '');
     var btn = document.createElement('button');
     btn.type = 'button'; btn.className = 'g-open';
     btn.setAttribute('aria-label', 'הגדלה: ' + (item.alt || ''));
@@ -66,7 +62,7 @@
       btn.innerHTML = '<img loading="lazy" decoding="async" src="' + item.poster + '" alt="' + (item.alt || '') + '" width="' + item.width + '" height="' + item.height + '">' +
         '<span class="g-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span>';
     } else {
-      btn.innerHTML = '<picture><source type="image/webp" srcset="' + (item.small ? item.small + ' 640w, ' : '') + item.webp + ' ' + item.width + 'w" sizes="(min-width: 900px) 40vw, 92vw">' +
+      btn.innerHTML = '<picture><source type="image/webp" srcset="' + (item.small ? item.small + ' 640w, ' : '') + item.webp + ' ' + item.width + 'w" sizes="(min-width: 900px) 30vw, 46vw">' +
         '<img loading="lazy" decoding="async" src="' + item.jpg + '" alt="' + (item.alt || '') + '" width="' + item.width + '" height="' + item.height + '"></picture>';
     }
     btn.addEventListener('click', function () { openLightbox(item); });
@@ -82,70 +78,201 @@
       : '<picture><source type="image/webp" srcset="' + item.webp + '"><img src="' + item.jpg + '" alt="' + (item.alt || '') + '"></picture>';
     lb.showModal();
   }
-  function closeLightbox() { lb.close(); }
+  function closeLightbox() { if (lb && lb.open) lb.close(); }
   if (lb) {
     $('.lb-close', lb).addEventListener('click', closeLightbox);
     lb.addEventListener('click', function (e) { if (e.target === lb) closeLightbox(); });
     lb.addEventListener('close', function () { lbBody.innerHTML = ''; });
   }
 
-  /* ---------- reveal on scroll ---------- */
-  var reveals = $$('.reveal');
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('is-in'); });
-  } else {
-    document.documentElement.classList.add('js-reveal');
-    var ro = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); ro.unobserve(en.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    reveals.forEach(function (el) { ro.observe(el); });
+  /* ---------- videos ----------
+     One audible video at a time.
+     Craft tries unmuted play when it enters the viewport (and again on a later
+     user gesture). If the browser blocks that, it stays muted and the visible
+     control reads "הפעל סאונד". Clips with data-audio="no" never claim sound.
+  */
+  var audible = null;
+  var locking = false;
+
+  function videoOf(btn) {
+    var id = btn && btn.getAttribute('aria-controls');
+    return id ? document.getElementById(id) : null;
+  }
+  function hasAudio(v) { return v && v.getAttribute('data-audio') === 'yes'; }
+  function setPlayUi(v) {
+    $$('.js-play').forEach(function (btn) {
+      if (videoOf(btn) !== v) return;
+      var paused = v.paused;
+      btn.textContent = paused ? 'נגן' : 'השהה';
+      btn.setAttribute('aria-pressed', paused ? 'false' : 'true');
+    });
+  }
+  function setSoundUi(v, on) {
+    $$('.js-sound').forEach(function (btn) {
+      if (videoOf(btn) !== v) return;
+      btn.classList.toggle('is-on', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? 'כבה סאונד' : 'הפעל סאונד';
+    });
+  }
+  function silenceOthers(current) {
+    if (locking) return;
+    locking = true;
+    $$('video').forEach(function (v) {
+      if (v === current) return;
+      if (!v.muted) v.muted = true;
+      if (hasAudio(v)) setSoundUi(v, false);
+    });
+    if (audible && audible !== current) audible = null;
+    locking = false;
+  }
+  function mostlyVisible(v) {
+    var r = v.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+    return visible > Math.min(r.height, vh) * 0.35;
+  }
+  function playMuted(v) {
+    if (v.dataset.userPaused === '1') return;
+    v.muted = true;
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+    if (hasAudio(v)) setSoundUi(v, false);
+  }
+  /* Best-effort unmute. On failure, muted playback + "הפעל סאונד". */
+  function requestAudible(v) {
+    if (!hasAudio(v) || v.dataset.soundPref === 'off' || v.dataset.userPaused === '1') return;
+    silenceOthers(v);
+    v.muted = false;
+    var p = v.play();
+    var fallback = function () {
+      if (v.dataset.userPaused === '1') { setSoundUi(v, !v.muted && !v.paused); return; }
+      playMuted(v);
+      if (audible === v) audible = null;
+    };
+    var ok = function () {
+      if (v.dataset.userPaused === '1') return;
+      if (v.muted || v.paused) { fallback(); return; }
+      audible = v;
+      v.dataset.soundUnlocked = '1';
+      setSoundUi(v, true);
+      setPlayUi(v);
+    };
+    if (p && p.then) p.then(ok).catch(fallback);
+    else ok();
   }
 
-  /* ---------- videos ---------- */
-  var hero = $('.hero-video');
-  if (hero && reduceMotion) { hero.removeAttribute('autoplay'); hero.pause(); }
+  $$('.js-play').forEach(function (btn) {
+    var v = videoOf(btn);
+    if (!v) return;
+    btn.addEventListener('click', function () {
+      if (v.paused) {
+        v.dataset.userPaused = '0';
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        v.pause();
+        v.dataset.userPaused = '1';
+      }
+      setPlayUi(v);
+    });
+    v.addEventListener('play', function () { setPlayUi(v); });
+    v.addEventListener('pause', function () { setPlayUi(v); });
+    setPlayUi(v);
+  });
 
-  // muted loops: play only while visible (saves data/battery)
-  var autos = $$('.js-auto-video');
-  if ('IntersectionObserver' in window && !reduceMotion) {
+  $$('.js-sound').forEach(function (btn) {
+    var v = videoOf(btn);
+    if (!v || !hasAudio(v)) { btn.hidden = true; return; }
+    btn.addEventListener('click', function () {
+      if (v.muted) {
+        v.dataset.soundPref = 'on';
+        v.dataset.userPaused = '0';
+        requestAudible(v);
+      } else {
+        v.dataset.soundPref = 'off';
+        v.muted = true;
+        if (audible === v) audible = null;
+        setSoundUi(v, false);
+      }
+    });
+    v.addEventListener('volumechange', function () {
+      if (locking) return;
+      if (!v.muted) {
+        silenceOthers(v);
+        audible = v;
+        setSoundUi(v, true);
+      } else if (audible === v) {
+        audible = null;
+        setSoundUi(v, false);
+      }
+    });
+  });
+
+  var loops = $$('.js-loop-video');
+  if (reduceMotion) {
+    loops.forEach(function (v) {
+      v.removeAttribute('autoplay');
+      v.pause();
+      setPlayUi(v);
+    });
+  } else if ('IntersectionObserver' in window) {
     var vo = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         var v = en.target;
-        if (en.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-        else v.pause();
+        if (v.dataset.userPaused === '1') return;
+        if (en.isIntersecting) {
+          if (hasAudio(v) && v.dataset.soundPref !== 'off' && !audible) requestAudible(v);
+          else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        } else {
+          v.pause();
+          if (audible === v) {
+            v.muted = true;
+            audible = null;
+            setSoundUi(v, false);
+          }
+        }
       });
-    }, { threshold: 0.25 });
-    autos.forEach(function (v) { vo.observe(v); });
+    }, { threshold: 0.35 });
+    loops.forEach(function (v) { vo.observe(v); });
   }
 
-  // click-to-play with sound
+  /* A real user gesture can unlock sound the autoplay attempt could not. */
+  function unlockFromGesture(e) {
+    var craft = $('#craft-resin');
+    if (!craft || !hasAudio(craft)) return;
+    if (craft.dataset.soundPref === 'off' || craft.dataset.soundUnlocked === '1') return;
+    if (craft.dataset.userPaused === '1') return;
+    if (e.target.closest && e.target.closest('.js-sound, .js-kiosk-play, .js-play, a, button, input, textarea, select, label')) return;
+    if (!mostlyVisible(craft)) return;
+    requestAudible(craft);
+  }
+  document.addEventListener('pointerdown', unlockFromGesture);
+
   $$('.js-click-video').forEach(function (v) {
-    var frame = v.parentElement, btn = $('.play-btn', frame);
+    var screen = v.parentElement;
+    var btn = $('.js-kiosk-play', screen);
+    if (!btn) return;
     function start() {
-      frame.classList.add('is-playing');
-      v.controls = true; v.muted = false;
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      screen.parentElement.classList.add('is-playing');
+      v.controls = true;
+      v.dataset.userPaused = '0';
+      if (hasAudio(v)) requestAudible(v);
+      else { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
     }
     btn.addEventListener('click', start);
-    v.addEventListener('ended', function () { frame.classList.remove('is-playing'); v.controls = false; });
-  });
-
-  // family boat: tap to unmute (autoplay stays muted by browser policy)
-  $$('.js-sound-video').forEach(function (v) {
-    var wrap = v.closest('.craft-media, .family-media') || v.parentElement;
-    var btn = $('.sound-btn', wrap);
-    if (!btn) return;
-    var label = $('.sound-label', btn);
-    function setOn(on) {
-      v.muted = !on;
-      btn.classList.toggle('is-on', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (label) label.textContent = on ? 'כבה סאונד' : 'הפעל סאונד';
-      if (on) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-    }
-    btn.addEventListener('click', function () { setOn(v.muted); });
+    v.addEventListener('ended', function () {
+      screen.parentElement.classList.remove('is-playing');
+      v.controls = false;
+      if (audible === v) audible = null;
+    });
+    v.addEventListener('volumechange', function () {
+      if (locking) return;
+      if (!v.muted) {
+        silenceOthers(v);
+        audible = v;
+      } else if (audible === v) audible = null;
+    });
   });
 
   /* ---------- form ---------- */
