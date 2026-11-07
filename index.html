@@ -347,11 +347,19 @@
 
     <!-- ===== 7. Family / team ===== -->
     <section class="family" aria-labelledby="family-title">
-      <!-- team-boat.mp4 = seconds 7.4-18 of the boat video (54d70ba2...), muted, no separate soundtrack yet. Shows real people: confirm consent. -->
-      <video class="family-video js-auto-video" muted loop playsinline preload="none"
-             poster="assets/video/team-boat.webp" width="848" height="478" aria-hidden="true">
-        <source src="assets/video/team-boat.mp4" type="video/mp4">
-      </video>
+      <!-- team-boat.mp4 = boat-company clip with AAC audio; autoplay muted, tap sound-btn to unmute. Shows real people: confirm consent. -->
+      <div class="family-media">
+        <video class="family-video js-auto-video js-sound-video" id="family-boat" muted loop playsinline preload="none"
+               poster="assets/video/team-boat.webp" width="464" height="832"
+               aria-label="הצוות בסירת החברה בהוואי">
+          <source src="assets/video/team-boat.mp4" type="video/mp4">
+        </video>
+        <button class="sound-btn" type="button" aria-controls="family-boat" aria-pressed="false">
+          <svg class="i i-fill sound-ico-off" aria-hidden="true" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6M16 9l6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <svg class="i i-fill sound-ico-on" aria-hidden="true" viewBox="0 0 24 24" hidden><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+          <span class="sound-label">הפעל סאונד</span>
+        </button>
+      </div>
       <div class="family-shade" aria-hidden="true"></div>
       <div class="container family-content reveal">
         <span class="sticker-tag tag-yellow family-tag">צוות</span>
