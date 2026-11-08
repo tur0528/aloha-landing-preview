@@ -25,7 +25,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/video/hero-sunset.webp" type="image/webp">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -106,29 +106,43 @@
     </div>
 
     <section class="section" id="about" aria-labelledby="about-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">מי אנחנו</p>
-          <h2 id="about-title">אמנות בעבודת יד, <span class="mark">מאז 2016</span></h2>
-          <p class="lead">עץ, אפוקסי ותחנות רוח. בתוך מלונות בהוואי.</p>
+      <div class="container about-layout">
+        <div class="about-copy">
+          <div class="section-head">
+            <p class="kicker">מי אנחנו</p>
+            <h2 id="about-title">אמנות בעבודת יד, <span class="mark">מאז 2016</span></h2>
+            <p class="lead">עץ, אפוקסי ותחנות רוח. בתוך מלונות בהוואי.</p>
+          </div>
+          <ul class="locations">
+            <li class="loc-card">
+              <span class="loc-index">01</span>
+              <div>
+                <h3>Marriott Waikiki</h3>
+                <p>הונולולו, <span dir="ltr">Oahu</span></p>
+              </div>
+            </li>
+            <li class="loc-card">
+              <span class="loc-index">02</span>
+              <div>
+                <h3>Kihei</h3>
+                <p><span dir="ltr">Maui</span></p>
+              </div>
+            </li>
+            <li class="loc-card">
+              <span class="loc-index">03</span>
+              <div>
+                <h3>Hyatt Regency Ka&#699;anapali</h3>
+                <p>ליד להיינה, <span dir="ltr">Maui</span></p>
+              </div>
+            </li>
+          </ul>
         </div>
-        <ul class="locations">
-          <li class="loc-card">
-            <span class="loc-index">01</span>
-            <h3 dir="ltr">Marriott Waikiki</h3>
-            <p>הונולולו, <span dir="ltr">Oahu</span></p>
-          </li>
-          <li class="loc-card">
-            <span class="loc-index">02</span>
-            <h3 dir="ltr">Kihei</h3>
-            <p><span dir="ltr">Maui</span></p>
-          </li>
-          <li class="loc-card">
-            <span class="loc-index">03</span>
-            <h3 dir="ltr">Hyatt Regency Ka&#699;anapali</h3>
-            <p>ליד להיינה, <span dir="ltr">Maui</span></p>
-          </li>
-        </ul>
+        <figure class="about-visual">
+          <picture>
+            <source type="image/webp" srcset="assets/img/store-surfboard-640.webp 640w, assets/img/store-surfboard-1280.webp 1280w" sizes="(min-width: 900px) 46vw, 100vw">
+            <img src="assets/img/store-surfboard-1280.jpg" alt="חנות Aloha Art Collective, גלשן על התקרה ועבודות עץ ואפוקסי" width="1280" height="720">
+          </picture>
+        </figure>
       </div>
     </section>
 
@@ -181,7 +195,7 @@
           </li>
           <li>
             <h3>והכי חשוב — שמחים</h3>
-            <p>אם את/ה בן־זהב עם אנרגיות טובות, כנראה שתתאים/י.</p>
+            <p>אם את/ה עם אנרגיות טובות, כנראה שתתאים/י.</p>
           </li>
         </ul>
       </div>
@@ -195,17 +209,16 @@
           <p class="lead">מוכרים אמנות, פוגשים אנשים מכל העולם — ומרוויחים בגדול.</p>
         </div>
 
-        <div class="job-layout">
-          <article class="pay-card">
+        <article class="pay-card">
+          <div class="pay-main">
             <p class="pay-label">פוטנציאל הכנסה</p>
             <p class="pay-num" dir="ltr">$10,000+</p>
-            <p class="pay-sub">לחודש, ויותר. פוטנציאל לפי יכולת, לא הכנסה מובטחת.</p>
+            <p class="pay-sub">לחודש, ויותר. פוטנציאל לפי יכולת.</p>
             <ul class="pay-tags">
               <li>עמלות מכירה</li>
               <li>בונוסים</li>
             </ul>
-            <p class="pay-safety">100 דולר בסיס למשמרת</p>
-          </article>
+          </div>
           <ul class="job-facts">
             <li>
               <b>5</b>
@@ -220,10 +233,11 @@
               <span>חופש. לא עובדים בחגים.</span>
             </li>
           </ul>
-        </div>
+          <p class="pay-safety">100 דולר בסיס למשמרת</p>
+        </article>
 
         <aside class="note" role="note">
-          <p><strong>דרישת סף – אפשרות עבודה בארה״ב</strong></p>
+          <p><strong>🇺🇸 דרישת סף – אפשרות עבודה בארה״ב</strong></p>
           <p>נדרשת זכאות חוקית לעבוד בארצות הברית. מועמדים בעלי אזרחות אמריקאית, אישור עבודה מתאים או בעלי אפשרות להסדרת אישור עבודה מוזמנים להגיש מועמדות.</p>
         </aside>
       </div>
@@ -301,17 +315,18 @@
           <div class="player">
             <div class="player-screen player-screen-wide">
               <!--
-                Original seaside/boat clip restored from git 2c0134f.
-                848x478, video only — this file has no audio stream.
-                Do not replace it with craft-resin / boat-company.
+                Original seaside/boat picture (848x478). The picture has no location audio.
+                The AAC track is an original synthesized instrumental written for this clip,
+                not a field recording and not the craft soundtrack.
               -->
-              <video class="js-loop-video" id="team-boat" data-audio="no" muted loop playsinline preload="metadata"
+              <video class="js-loop-video js-sound-video" id="team-boat" data-audio="yes" muted loop playsinline preload="metadata"
                      poster="assets/video/team-boat.webp" width="848" height="478"
-                     aria-label="הצוות בסירה ליד החוף">
+                     aria-label="הצוות בסירה ליד החוף, עם מוזיקת רקע">
                 <source src="assets/video/team-boat.mp4" type="video/mp4">
               </video>
             </div>
             <div class="player-bar">
+              <button class="vbtn vbtn-accent js-sound" type="button" aria-controls="team-boat" aria-pressed="false">הפעל סאונד</button>
               <button class="vbtn js-play" type="button" aria-controls="team-boat">השהה</button>
             </div>
           </div>
