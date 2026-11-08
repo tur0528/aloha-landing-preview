@@ -142,6 +142,7 @@
   /* Best-effort unmute. On failure, muted playback + "הפעל סאונד". */
   function requestAudible(v) {
     if (!hasAudio(v) || v.dataset.soundPref === 'off' || v.dataset.userPaused === '1') return;
+    audible = v;
     silenceOthers(v);
     v.muted = false;
     var p = v.play();
@@ -239,13 +240,16 @@
 
   /* A real user gesture can unlock sound the autoplay attempt could not. */
   function unlockFromGesture(e) {
-    var craft = $('#craft-resin');
-    if (!craft || !hasAudio(craft)) return;
-    if (craft.dataset.soundPref === 'off' || craft.dataset.soundUnlocked === '1') return;
-    if (craft.dataset.userPaused === '1') return;
     if (e.target.closest && e.target.closest('.js-sound, .js-kiosk-play, .js-play, a, button, input, textarea, select, label')) return;
-    if (!mostlyVisible(craft)) return;
-    requestAudible(craft);
+    var ids = ['team-boat', 'craft-resin'];
+    for (var i = 0; i < ids.length; i++) {
+      var v = document.getElementById(ids[i]);
+      if (!v || !hasAudio(v)) continue;
+      if (v.dataset.soundPref === 'off' || v.dataset.soundUnlocked === '1' || v.dataset.userPaused === '1') continue;
+      if (!mostlyVisible(v)) continue;
+      requestAudible(v);
+      return;
+    }
   }
   document.addEventListener('pointerdown', unlockFromGesture);
 
