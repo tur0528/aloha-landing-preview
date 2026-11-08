@@ -241,7 +241,7 @@
   /* A real user gesture can unlock sound the autoplay attempt could not. */
   function unlockFromGesture(e) {
     if (e.target.closest && e.target.closest('.js-sound, .js-kiosk-play, .js-play, a, button, input, textarea, select, label')) return;
-    var ids = ['team-boat', 'craft-resin'];
+    var ids = ['hero-video', 'craft-resin'];
     for (var i = 0; i < ids.length; i++) {
       var v = document.getElementById(ids[i]);
       if (!v || !hasAudio(v)) continue;

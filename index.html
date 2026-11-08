@@ -61,7 +61,7 @@
         <div class="hero-copy">
           <p class="eyebrow" dir="ltr">Maui · Oahu · Hawai&#699;i</p>
           <h1 id="hero-title">לעבוד בהוואי.<br>להרגיש בבית.</h1>
-          <p class="hero-sub">למה לעבוד בחורף כשיש שלג, כשאפשר לעבוד בהוואי האקזוטית — שאין בה חורף כל השנה?</p>
+          <p class="hero-sub">למה לעבוד בחורף, כשאפשר לעבוד בהוואי האקזוטית — שאין בה חורף כל השנה?</p>
           <p class="hero-pitch">שמש, גלים, מסעדות וחיי לילה. וגם להרוויח בגדול.</p>
           <div class="hero-ctas">
             <a class="btn btn-primary" href="#apply">להגשת מועמדות</a>
@@ -73,13 +73,17 @@
         </div>
         <div class="hero-stage">
           <div class="hero-media">
-            <!-- Sunset ocean loop. No audio track. Not the team boat clip and not the craft clip. -->
-            <video class="hero-video js-loop-video" id="hero-video" data-audio="no" autoplay muted loop playsinline preload="auto"
-                   poster="assets/video/hero-sunset.webp" width="848" height="478">
-              <source src="assets/video/hero-sunset.mp4" type="video/mp4">
+            <!-- Full original team clip: sunset, then the boat. Own voices, laughter, wind. No added music. -->
+            <video class="hero-video js-loop-video js-sound-video" id="hero-video" data-audio="yes" muted loop playsinline preload="metadata"
+                   poster="assets/video/team-boat.webp" width="848" height="478"
+                   aria-label="הצוות בסירה ליד החוף, עם הקול המקורי">
+              <source src="assets/video/team-boat.mp4" type="video/mp4">
             </video>
           </div>
-          <button class="vbtn hero-pause js-play" type="button" aria-controls="hero-video">השהה</button>
+          <div class="hero-controls">
+            <button class="vbtn vbtn-accent js-sound" type="button" aria-controls="hero-video" aria-pressed="false">הפעל סאונד</button>
+            <button class="vbtn js-play" type="button" aria-controls="hero-video">השהה</button>
+          </div>
         </div>
       </div>
       <div class="container">
@@ -315,24 +319,7 @@
           <p class="lead">עסק יציב ומבוסס <span class="nowrap">מאז 2016,</span> עם אווירה של בית. אצלנו הכל באווירה טובה ומשפחתית.</p>
         </div>
         <figure class="team-visual">
-          <div class="player">
-            <div class="player-screen player-screen-wide">
-              <!--
-                Original team source, used intact: sunset, then the team on the boat.
-                AAC is the file's own voices, laughter, wind and water. No added music.
-                Container is faststart only; video and audio streams are the source streams.
-              -->
-              <video class="js-loop-video js-sound-video" id="team-boat" data-audio="yes" muted loop playsinline preload="metadata"
-                     poster="assets/video/team-boat.webp" width="848" height="478"
-                     aria-label="הצוות בסירה ליד החוף, עם הקול המקורי">
-                <source src="assets/video/team-boat.mp4" type="video/mp4">
-              </video>
-            </div>
-            <div class="player-bar">
-              <button class="vbtn vbtn-accent js-sound" type="button" aria-controls="team-boat" aria-pressed="false">הפעל סאונד</button>
-              <button class="vbtn js-play" type="button" aria-controls="team-boat">השהה</button>
-            </div>
-          </div>
+          <img src="assets/video/team-boat.jpg" alt="הצוות בסירה ליד החוף" width="848" height="478">
           <figcaption>הצוות בים</figcaption>
         </figure>
       </div>
