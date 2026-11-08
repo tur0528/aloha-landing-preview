@@ -99,12 +99,18 @@
     return id ? document.getElementById(id) : null;
   }
   function hasAudio(v) { return v && v.getAttribute('data-audio') === 'yes'; }
+  function icon(btn, name, show) {
+    var el = btn.querySelector('.' + name);
+    if (el) el.hidden = !show;
+  }
   function setPlayUi(v) {
     $$('.js-play').forEach(function (btn) {
       if (videoOf(btn) !== v) return;
       var paused = v.paused;
-      btn.textContent = paused ? 'נגן' : 'השהה';
       btn.setAttribute('aria-pressed', paused ? 'false' : 'true');
+      btn.setAttribute('aria-label', paused ? 'נגן' : 'השהה');
+      icon(btn, 'ico-play', paused);
+      icon(btn, 'ico-pause', !paused);
     });
   }
   function setSoundUi(v, on) {
@@ -112,7 +118,9 @@
       if (videoOf(btn) !== v) return;
       btn.classList.toggle('is-on', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.textContent = on ? 'כבה סאונד' : 'הפעל סאונד';
+      btn.setAttribute('aria-label', on ? 'כבה סאונד' : 'הפעל סאונד');
+      icon(btn, 'ico-sound', on);
+      icon(btn, 'ico-mute', !on);
     });
   }
   function silenceOthers(current) {
@@ -188,8 +196,18 @@
     btn.addEventListener('click', function () {
       if (v.muted) {
         v.dataset.soundPref = 'on';
-        v.dataset.userPaused = '0';
-        requestAudible(v);
+        silenceOthers(v);
+        v.muted = false;
+        audible = v;
+        setSoundUi(v, true);
+        if (!v.paused) {
+          var p = v.play();
+          if (p && p.catch) p.catch(function () {
+            v.muted = true;
+            if (audible === v) audible = null;
+            setSoundUi(v, false);
+          });
+        }
       } else {
         v.dataset.soundPref = 'off';
         v.muted = true;
@@ -241,7 +259,7 @@
   /* A real user gesture can unlock sound the autoplay attempt could not. */
   function unlockFromGesture(e) {
     if (e.target.closest && e.target.closest('.js-sound, .js-kiosk-play, .js-play, a, button, input, textarea, select, label')) return;
-    var ids = ['hero-video', 'craft-resin'];
+    var ids = ['hero-video', 'team-boat', 'craft-resin'];
     for (var i = 0; i < ids.length; i++) {
       var v = document.getElementById(ids[i]);
       if (!v || !hasAudio(v)) continue;

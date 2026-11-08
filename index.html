@@ -73,17 +73,24 @@
         </div>
         <div class="hero-stage">
           <div class="hero-media">
-            <!-- Full original team clip: sunset, then the boat. Own voices, laughter, wind. No added music. -->
+            <!-- Kiosk walk: beach to the shop, original soundtrack. Not the boat, not the craft clip. -->
             <video class="hero-video js-loop-video js-sound-video" id="hero-video" data-audio="yes" muted loop playsinline preload="metadata"
-                   poster="assets/video/team-boat.webp" width="848" height="478"
-                   aria-label="הצוות בסירה ליד החוף, עם הקול המקורי">
-              <source src="assets/video/team-boat.mp4" type="video/mp4">
+                   poster="assets/video/kiosk-walk.webp" width="360" height="640"
+                   aria-label="סיור בקיוסק, עם הקול המקורי">
+              <source src="assets/video/kiosk-walk.mp4" type="video/mp4">
             </video>
           </div>
-          <div class="hero-controls">
-            <button class="vbtn vbtn-accent js-sound" type="button" aria-controls="hero-video" aria-pressed="false">הפעל סאונד</button>
-            <button class="vbtn js-play" type="button" aria-controls="hero-video">השהה</button>
+          <div class="hero-controls media-controls">
+            <button class="vbtn vbtn-icon js-play" type="button" aria-controls="hero-video" aria-pressed="false" aria-label="נגן">
+              <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.2v13.6l11.2-6.8z"/></svg>
+              <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4.2v14H6zm7.8 0H18v14h-4.2z"/></svg>
+            </button>
+            <button class="vbtn vbtn-icon js-sound" type="button" aria-controls="hero-video" aria-pressed="false" aria-label="הפעל סאונד">
+              <svg class="ico ico-mute" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+              <svg class="ico ico-sound" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 9.2a3.6 3.6 0 0 1 0 5.6M18 7a6.2 6.2 0 0 1 0 10"/></svg>
+            </button>
           </div>
+          <p class="hero-caption">סיור בקיוסק <span class="cap-meta">עם קול</span></p>
         </div>
       </div>
       <div class="container">
@@ -153,7 +160,7 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="principles-title">
+    <section class="section section-values" aria-labelledby="principles-title">
       <div class="container">
         <div class="section-head">
           <p class="kicker">איך אנחנו עובדים</p>
@@ -180,31 +187,37 @@
       </div>
     </section>
 
-    <section class="section" id="seek" aria-labelledby="seek-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="kicker">מי מתאים</p>
-          <h2 id="seek-title">מחפשים את התותחים ביותר</h2>
-          <p class="lead">מגייסים עכשיו את האדם הבא שיצטרף למשפחה שלנו בלוקיישנים הטובים ביותר בהוואי.</p>
-        </div>
-        <ul class="seek-grid">
-          <li>
-            <h3>התותחים ביותר</h3>
-            <p>אנשים עם אש בעיניים ורצון לנצח.</p>
-          </li>
-          <li>
-            <h3>רוצים להיות מקצוענים</h3>
-            <p>ללמוד, להשתפר, ולעשות את זה ברמה.</p>
-          </li>
-          <li>
-            <h3>טובים עם אנשים</h3>
-            <p>שיחה טובה פותחת דלת — וגם מכירה.</p>
-          </li>
-          <li>
-            <h3>והכי חשוב — שמחים</h3>
-            <p>אם את/ה עם אנרגיות טובות, כנראה שתתאים/י.</p>
-          </li>
-        </ul>
+    <section class="section section-invite" id="seek" aria-labelledby="seek-title">
+      <div class="container seek-pair">
+        <article class="want-panel">
+          <div class="section-head">
+            <h2 id="seek-title">מחפשים את התותחים ביותר</h2>
+            <p class="lead">מגייסים עכשיו את האדם הבא שיצטרף למשפחה שלנו בלוקיישנים הטובים ביותר בהוואי.</p>
+          </div>
+          <ul class="seek-grid">
+            <li>
+              <h3>התותחים ביותר</h3>
+              <p>אנשים עם אש בעיניים ורצון לנצח.</p>
+            </li>
+            <li>
+              <h3>רוצים להיות מקצוענים</h3>
+              <p>ללמוד, להשתפר, ולעשות את זה ברמה.</p>
+            </li>
+          </ul>
+        </article>
+        <article class="fit-panel" aria-labelledby="fit-title">
+          <h3 id="fit-title" class="fit-title">מי מתאים</h3>
+          <ul class="seek-grid">
+            <li>
+              <h3>טובים עם אנשים</h3>
+              <p>שיחה טובה פותחת דלת — וגם מכירה.</p>
+            </li>
+            <li>
+              <h3>והכי חשוב — שמחים</h3>
+              <p>אם את/ה עם אנרגיות טובות, כנראה שתתאים/י.</p>
+            </li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -219,7 +232,7 @@
         <article class="pay-card">
           <div class="pay-main">
             <p class="pay-label">פוטנציאל הכנסה</p>
-            <p class="pay-num" dir="ltr">$10,000+</p>
+            <p class="pay-num"><span dir="ltr">$10,000+</span></p>
             <p class="pay-sub">לחודש, ויותר. פוטנציאל לפי יכולת.</p>
             <ul class="pay-tags">
               <li>עמלות מכירה</li>
@@ -228,19 +241,19 @@
           </div>
           <ul class="job-facts">
             <li>
-              <b>5</b>
+              <b class="fig" dir="ltr">5</b>
               <span>ימים בשבוע</span>
             </li>
             <li>
-              <b dir="ltr">~8</b>
+              <b class="fig" dir="ltr">~8</b>
               <span>שעות ביום</span>
             </li>
             <li>
-              <b>חגים</b>
+              <b class="fig">חגים</b>
               <span>חופש. לא עובדים בחגים.</span>
             </li>
           </ul>
-          <p class="pay-safety">100 דולר בסיס למשמרת</p>
+          <p class="pay-safety"><b class="fig" dir="ltr">100</b><span>דולר בסיס למשמרת</span></p>
         </article>
 
         <aside class="note" role="note">
@@ -260,23 +273,6 @@
           <figure class="clip">
             <div class="player">
               <div class="player-screen player-screen-tall">
-                <!--
-                  kiosk-walk.mp4 shows a tourist couple (~0:58–1:10) and the narration mentions an American passport.
-                  Confirm consent before going live, or trim. Keep this low-res clip inside the card, never full-bleed.
-                -->
-                <video class="js-click-video" id="kiosk-walk" data-audio="yes" muted preload="none" playsinline
-                       poster="assets/video/kiosk-walk.webp" width="360" height="640"
-                       aria-label="סיור בקיוסק, עם קול">
-                  <source src="assets/video/kiosk-walk.mp4" type="video/mp4">
-                </video>
-                <button class="play-cover js-kiosk-play" type="button" aria-controls="kiosk-walk">הפעלה עם קול</button>
-              </div>
-            </div>
-            <figcaption>סיור בקיוסק <span class="cap-meta">עם קול</span></figcaption>
-          </figure>
-          <figure class="clip">
-            <div class="player">
-              <div class="player-screen player-screen-tall">
                 <!-- shop-loop.mp4 has no audio track -->
                 <video class="js-loop-video" id="shop-loop" data-audio="no" muted loop playsinline preload="none"
                        poster="assets/video/shop-loop.webp" width="392" height="848"
@@ -284,8 +280,11 @@
                   <source src="assets/video/shop-loop.mp4" type="video/mp4">
                 </video>
               </div>
-              <div class="player-bar">
-                <button class="vbtn js-play" type="button" aria-controls="shop-loop">השהה</button>
+              <div class="player-bar media-controls">
+                <button class="vbtn vbtn-icon js-play" type="button" aria-controls="shop-loop" aria-pressed="false" aria-label="נגן">
+                  <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.2v13.6l11.2-6.8z"/></svg>
+                  <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4.2v14H6zm7.8 0H18v14h-4.2z"/></svg>
+                </button>
               </div>
             </div>
             <figcaption>בתוך החנות</figcaption>
@@ -319,7 +318,26 @@
           <p class="lead">עסק יציב ומבוסס <span class="nowrap">מאז 2016,</span> עם אווירה של בית. אצלנו הכל באווירה טובה ומשפחתית.</p>
         </div>
         <figure class="team-visual">
-          <img src="assets/video/team-boat.jpg" alt="הצוות בסירה ליד החוף" width="848" height="478">
+          <div class="player">
+            <div class="player-screen player-screen-wide">
+              <!-- Original boat clip, voices and wind, moved back beside the team. -->
+              <video class="js-loop-video js-sound-video" id="team-boat" data-audio="yes" muted loop playsinline preload="metadata"
+                     poster="assets/video/team-boat.webp" width="848" height="478"
+                     aria-label="הצוות בסירה ליד החוף, עם הקול המקורי">
+                <source src="assets/video/team-boat.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="player-bar media-controls">
+              <button class="vbtn vbtn-icon js-play" type="button" aria-controls="team-boat" aria-pressed="false" aria-label="נגן">
+                <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.2v13.6l11.2-6.8z"/></svg>
+                <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4.2v14H6zm7.8 0H18v14h-4.2z"/></svg>
+              </button>
+              <button class="vbtn vbtn-icon js-sound" type="button" aria-controls="team-boat" aria-pressed="false" aria-label="הפעל סאונד">
+                <svg class="ico ico-mute" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+                <svg class="ico ico-sound" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 9.2a3.6 3.6 0 0 1 0 5.6M18 7a6.2 6.2 0 0 1 0 10"/></svg>
+              </button>
+            </div>
+          </div>
           <figcaption>הצוות בים</figcaption>
         </figure>
       </div>
@@ -345,9 +363,15 @@
                     <source src="assets/video/craft-resin.mp4" type="video/mp4">
                   </video>
                 </div>
-                <div class="player-bar">
-                  <button class="vbtn vbtn-accent js-sound" type="button" aria-controls="craft-resin" aria-pressed="false">הפעל סאונד</button>
-                  <button class="vbtn js-play" type="button" aria-controls="craft-resin">השהה</button>
+                <div class="player-bar media-controls">
+                  <button class="vbtn vbtn-icon js-play" type="button" aria-controls="craft-resin" aria-pressed="false" aria-label="נגן">
+                    <svg class="ico ico-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M8 5.2v13.6l11.2-6.8z"/></svg>
+                    <svg class="ico ico-pause" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M6 5h4.2v14H6zm7.8 0H18v14h-4.2z"/></svg>
+                  </button>
+                  <button class="vbtn vbtn-icon js-sound" type="button" aria-controls="craft-resin" aria-pressed="false" aria-label="הפעל סאונד">
+                    <svg class="ico ico-mute" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+                    <svg class="ico ico-sound" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="currentColor" d="M4 9.5v5h3.2L12 19V5L7.2 9.5H4z"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M15.5 9.2a3.6 3.6 0 0 1 0 5.6M18 7a6.2 6.2 0 0 1 0 10"/></svg>
+                  </button>
                 </div>
               </div>
               <figcaption>עץ ואפוקסי, בסדנה</figcaption>
