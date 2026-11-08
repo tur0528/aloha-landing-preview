@@ -15,8 +15,7 @@ Local preview: `cd site && python3 -m http.server 8765` then open http://localho
 - `index.html`: set og:url / absolute og:image URL after the domain is known.
 - Consent: `assets/video/kiosk-walk.mp4` shows a tourist couple's faces (~0:58-1:10) and mentions an American passport;
   `team-boat.mp4` shows real people. Confirm consent or trim.
-- Media: `team-boat.mp4` picture is the original seaside/boat clip (848×478). That picture was recorded with no audio.
-  The AAC on it is an original instrumental synthesized for this page (pentatonic pluck, soft pad, filtered noise), written to the clip length (~10.82s) so the HTML loop restarts picture and music together. It is not location audio, not the craft track, and not a commercial song. License: original work created for this site.
+- Media: `team-boat.mp4` is the original team source (848×478, 18.24s). It opens on the sunset and continues to the team on the boat. Its AAC (48 kHz stereo) is that recording: Hebrew voices, laughter, wind and water. No music was added. The container is faststart only; the video and audio bitstreams match the supplied source. Do not shorten it or replace the soundtrack.
   `craft-resin.mp4` is the wood/epoxy workshop and keeps its own original AAC. Do not swap the two files.
 
 ## Adding photos / videos
