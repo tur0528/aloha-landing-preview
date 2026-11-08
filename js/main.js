@@ -38,7 +38,7 @@
     var fo = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); });
       waFloat.classList.toggle('is-hidden', visible.size > 0);
-    }, { threshold: 0.05 });
+    }, { threshold: 0, rootMargin: '0px 0px 96px 0px' });
     ['.hero', '#apply', '.site-footer'].forEach(function (s) { var el = $(s); if (el) fo.observe(el); });
   }
 
@@ -241,7 +241,7 @@
   /* A real user gesture can unlock sound the autoplay attempt could not. */
   function unlockFromGesture(e) {
     if (e.target.closest && e.target.closest('.js-sound, .js-kiosk-play, .js-play, a, button, input, textarea, select, label')) return;
-    var ids = ['team-boat', 'craft-resin'];
+    var ids = ['hero-video', 'craft-resin'];
     for (var i = 0; i < ids.length; i++) {
       var v = document.getElementById(ids[i]);
       if (!v || !hasAudio(v)) continue;
