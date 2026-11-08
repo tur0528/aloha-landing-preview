@@ -38,7 +38,7 @@
     var fo = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) visible.add(en.target); else visible.delete(en.target); });
       waFloat.classList.toggle('is-hidden', visible.size > 0);
-    }, { threshold: 0.05 });
+    }, { threshold: 0, rootMargin: '0px 0px 96px 0px' });
     ['.hero', '#apply', '.site-footer'].forEach(function (s) { var el = $(s); if (el) fo.observe(el); });
   }
 

@@ -2,15 +2,15 @@
    Two brand colors: ocean + sun. Everything else is paper, white, or ink.
    Reference for rhythm: restrained type, wide media, one accent. */
 :root {
-  --ocean: #0E4B48;
-  --ocean-deep: #083532;
-  --sun: #E3A008;
-  --paper: #F6F3EE;
-  --paper-2: #EFEAE3;
+  --ocean: #1574C8;
+  --ocean-deep: #0B4F8C;
+  --sun: #FF5A45;
+  --paper: #F4F9FD;
+  --paper-2: #E8F4FC;
   --white: #FFFFFF;
-  --ink: #17211F;
-  --muted: #5C6764;
-  --line: #E4DDD3;
+  --ink: #12263A;
+  --muted: #4A6278;
+  --line: #D3E4F2;
   --danger: #8E1B2C;
 
   --font: 'Rubik', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
@@ -91,7 +91,7 @@ button, input, textarea { font: inherit; }
 .btn-sm { min-height: 44px; padding: 0 16px; font-size: .95rem; }
 .btn-block { width: 100%; }
 .btn-primary { background: var(--sun); color: var(--ink); }
-.btn-primary:hover { background: #f0b429; }
+.btn-primary:hover { background: #FF7A68; }
 .btn-light { background: var(--white); color: var(--ocean); }
 .btn-ocean { background: var(--ocean); color: #fff; }
 .btn-ocean:hover { background: var(--ocean-deep); }
@@ -145,8 +145,8 @@ button, input, textarea { font: inherit; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 53, 50, .35) 0%, rgba(8, 53, 50, 0) 28%),
-    linear-gradient(0deg, rgba(8, 53, 50, .94) 0%, rgba(8, 53, 50, .72) 34%, rgba(8, 53, 50, .28) 68%, rgba(8, 53, 50, .15) 100%);
+    linear-gradient(180deg, rgba(11, 61, 120, .35) 0%, rgba(11, 61, 120, 0) 28%),
+    linear-gradient(0deg, rgba(11, 61, 120, .94) 0%, rgba(11, 61, 120, .72) 34%, rgba(11, 61, 120, .28) 68%, rgba(11, 61, 120, .15) 100%);
 }
 .hero-content {
   position: relative;
@@ -164,7 +164,7 @@ button, input, textarea { font: inherit; }
   font-size: .78rem;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--sun);
+  color: #fff;
 }
 .hero h1 {
   font-weight: 800;
@@ -174,7 +174,7 @@ button, input, textarea { font: inherit; }
   max-width: 11ch;
 }
 .mark {
-  background-image: linear-gradient(transparent 64%, rgba(227, 160, 8, .85) 64%, rgba(227, 160, 8, .85) 92%, transparent 92%);
+  background-image: linear-gradient(transparent 64%, rgba(255, 90, 69, .95) 64%, rgba(255, 90, 69, .95) 92%, transparent 92%);
 }
 .hero .mark { background-image: linear-gradient(transparent 68%, var(--sun) 68%, var(--sun) 86%, transparent 86%); }
 .hero-sub {
@@ -326,7 +326,7 @@ button, input, textarea { font: inherit; }
   overflow: hidden;
 }
 .pay-main { padding: 28px 24px 8px; }
-.pay-label { font-weight: 700; color: var(--sun); }
+.pay-label { font-weight: 700; color: #fff; }
 .pay-num {
   margin-top: 4px;
   font-weight: 800;
@@ -413,7 +413,7 @@ button, input, textarea { font: inherit; }
 }
 .vbtn:hover { border-color: var(--ocean); }
 .vbtn-accent { background: var(--sun); border-color: transparent; }
-.hero-pause { background: rgba(8, 53, 50, .82); color: #fff; border-color: rgba(255, 255, 255, .35); }
+.hero-pause { background: rgba(11, 79, 140, .88); color: #fff; border-color: rgba(255, 255, 255, .35); }
 .play-cover {
   position: absolute;
   inset: 0;
@@ -510,11 +510,11 @@ input[type=text], input[type=tel], input[type=number], input[type=date], textare
 }
 input[type=date] { text-align: right; direction: rtl; }
 textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
-input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--ocean); box-shadow: 0 0 0 3px rgba(14, 75, 72, .15); }
+input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--ocean); box-shadow: 0 0 0 3px rgba(11, 79, 140, .18); }
 [aria-invalid=true], fieldset[aria-invalid=true] .seg-opt span { border-color: var(--danger) !important; background: #fff6f7; }
 .error { font-size: .95rem; font-weight: 700; color: var(--danger); margin-top: 6px; }
 .error:empty { display: none; }
-.hint { margin-top: 8px; font-size: .95rem; font-weight: 600; background: #fff6df; color: var(--ink); padding: 8px 10px; border-radius: 10px; }
+.hint { margin-top: 8px; font-size: .95rem; font-weight: 600; background: var(--paper-2); color: var(--ink); padding: 8px 10px; border-radius: 10px; }
 .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .seg-opt { margin: 0; position: relative; cursor: pointer; }
 .seg-opt input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
@@ -545,12 +545,12 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
   background: #fff;
   color: var(--ink);
   border-top: 1px solid var(--line);
-  padding: 28px 0 calc(96px + env(safe-area-inset-bottom));
+  padding: 36px 0 calc(108px + env(safe-area-inset-bottom));
 }
-.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-.footer-brand { display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 600; color: var(--ocean); }
-.footer-brand img { width: 48px; height: 48px; border-radius: 50%; }
-.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; width: 100%; }
+.footer-brand { display: flex; flex-direction: column; align-items: center; gap: 8px; font-weight: 600; color: var(--ocean-deep); }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; flex: none; }
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 100%; }
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -559,31 +559,44 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
   padding: 0 12px;
   border-radius: 999px;
   text-decoration: none;
-  color: var(--ocean);
+  color: var(--ocean-deep);
   font-weight: 600;
 }
 .text-link:hover { background: var(--paper); }
 .credit {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
-  font-size: .95rem;
-  color: var(--muted);
+  padding-bottom: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ocean-deep);
 }
 .credit-logo {
-  display: inline-flex;
-  align-items: center;
+  display: block;
+  width: min(240px, 78vw);
+  max-width: 100%;
+  flex: none;
   background: none;
   border: 0;
   padding: 0;
   border-radius: 0;
   line-height: 0;
   text-decoration: none;
+  overflow: visible;
 }
-.credit-logo img { height: 46px; width: auto; display: block; }
+.credit-logo img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  flex: none;
+}
 
 /* floating WhatsApp */
 .wa-float {
@@ -606,7 +619,7 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 
 /* lightbox + toast */
 .lightbox { padding: 0; border: 0; background: transparent; max-width: min(94vw, 1100px); max-height: 92vh; }
-.lightbox::backdrop { background: rgba(8, 53, 50, .88); }
+.lightbox::backdrop { background: rgba(11, 61, 120, .88); }
 .lb-body img, .lb-body video { max-width: min(94vw, 1100px); max-height: 86vh; width: auto; height: auto; border-radius: 16px; }
 .lb-close {
   position: fixed;
@@ -672,9 +685,11 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
   .apply-grid { grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
   .apply-intro { position: sticky; top: calc(var(--header-h) + 24px); }
   .apply-form { padding: 32px; }
-  .footer-inner { flex-direction: row; justify-content: space-between; text-align: start; }
+  .footer-inner { flex-direction: row; flex-wrap: wrap; justify-content: space-between; align-items: center; text-align: start; row-gap: 20px; }
   .footer-brand { flex-direction: row; }
-  .site-footer { padding: 32px 0; }
+  .credit { flex-direction: row; width: auto; align-items: center; }
+  .credit-logo, .credit-logo img { width: 210px; height: auto; }
+  .site-footer { padding: 40px 0 36px; }
   .wa-float { display: none; }
 }
 
@@ -683,8 +698,8 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
   .hero { min-height: 780px; }
   .hero-shade {
     background:
-      linear-gradient(to left, rgba(8, 53, 50, .88) 0%, rgba(8, 53, 50, .55) 42%, rgba(8, 53, 50, .12) 100%),
-      linear-gradient(0deg, rgba(8, 53, 50, .55), rgba(8, 53, 50, 0) 42%);
+      linear-gradient(to left, rgba(11, 61, 120, .88) 0%, rgba(11, 61, 120, .55) 42%, rgba(11, 61, 120, .12) 100%),
+      linear-gradient(0deg, rgba(11, 61, 120, .55), rgba(11, 61, 120, 0) 42%);
   }
   .hero-content { padding-top: 72px; padding-bottom: 64px; }
   .hero-facts li { text-align: right; padding: 22px 28px; }
@@ -699,13 +714,13 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 /* Color rhythm: ocean and sun fields, not a beige card stack.
    Tones of the same two colors, plus paper, white, and ink. */
 :root {
-  --ocean-mid: #176863;
-  --mist: #D5EBE6;
-  --sun-wash: #F6E2A4;
-  --sun-deep: #C48A06;
+  --ocean-mid: #1C6FB5;
+  --mist: #E8F4FC;
+  --sun-wash: #E8F4FC;
+  --sun-deep: #E23B32;
 }
-.ticker { background: var(--sun); color: var(--ocean-deep); }
-.ticker span { color: var(--ocean-deep); }
+.ticker { background: var(--sun); color: var(--ink); }
+.ticker span { color: var(--ink); }
 .ticker .dot { background: var(--ocean-deep); }
 
 .section-sun { background: var(--sun-wash); }
@@ -713,8 +728,11 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 .section-ocean { background: var(--ocean); color: #fff; }
 .section-ocean-mid { background: var(--ocean-mid); }
 .section-ocean h2,
+.section-ocean .kicker,
+.section-ocean .principle-list li::before,
+.pay-label,
+.eyebrow { color: #fff; }
 .section-ocean .kicker { color: #fff; }
-.section-ocean .kicker { color: var(--sun); }
 .section-ocean .lead,
 .section-ocean .craft-body { color: rgba(255, 255, 255, .88); }
 .section-ocean .mark { background-image: linear-gradient(transparent 64%, var(--sun) 64%, var(--sun) 92%, transparent 92%); }
@@ -724,7 +742,7 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 
 /* about: photograph lifted off an ocean block */
 .section-sun .loc-card,
-.section-sun .locations li:last-child { border-color: rgba(14, 75, 72, .28); }
+.section-sun .locations li:last-child { border-color: rgba(21, 116, 200, .28); }
 .about-visual { position: relative; }
 .about-visual::before {
   content: "";
@@ -732,14 +750,14 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
   z-index: 0;
   inset-block: 22px -18px;
   inset-inline: -18px 22px;
-  background: var(--ocean);
+  background: var(--ocean-deep);
 }
-.about-visual img { position: relative; z-index: 1; box-shadow: 0 18px 40px rgba(8, 53, 50, .28); }
+.about-visual img { position: relative; z-index: 1; box-shadow: 0 18px 40px rgba(11, 79, 140, .28); }
 
 /* principles and seek: type on a color field */
 .section-ocean .principle-list,
 .section-ocean .principle-list li { border-color: rgba(255, 255, 255, .22); }
-.section-ocean .principle-list li::before { color: var(--sun); }
+.section-ocean .principle-list li::before { color: #fff; }
 .section-ocean .principle-list h3 { color: #fff; }
 .section-ocean .principle-list p { color: rgba(255, 255, 255, .82); }
 .section-ocean .seek-grid { background: transparent; border-radius: 0; color: #fff; }
@@ -767,7 +785,7 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 #team .kicker { color: var(--ocean-deep); }
 #team h2 { color: var(--ink); }
 #team .lead { color: var(--ink); }
-#team .mark { background-image: linear-gradient(transparent 64%, rgba(227, 160, 8, .95) 64%, rgba(227, 160, 8, .95) 92%, transparent 92%); }
+#team .mark { background-image: linear-gradient(transparent 64%, rgba(255, 90, 69, .9) 64%, rgba(255, 90, 69, .9) 92%, transparent 92%); }
 
 /* craft photos sit on the mist field; player keeps its edge */
 #craft .craft-photos figure { border-radius: 12px; }
@@ -775,7 +793,7 @@ input:focus, textarea:focus { outline: 0; background: #fff; border-color: var(--
 /* apply: ocean field, white form, sun card for WhatsApp */
 #apply .lead,
 #apply .recap { color: #fff; }
-#apply .kicker { color: var(--sun); }
+#apply .kicker { color: #fff; }
 #apply h2 { color: #fff; }
 #apply .recap li::before { background: var(--sun); }
 #apply .wa-card { background: var(--sun); border-color: transparent; }
